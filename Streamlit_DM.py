@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from datetime import datetime
 import statistics
-
+import zipfile
+from io import BytesIO
 
 def convert_to_numeric(df):
     return df.apply(pd.to_numeric, errors='coerce')
@@ -29,18 +30,23 @@ st.title("DM处理")
 # process_button = st.button('开始处理')
 
 
-uploaded_file = st.file_uploader("选择一个.zip文件", type=["zip"])
+uploaded_file = st.file_uploader("选择一个包含数据文件的.zip文件", type=["zip"])
 
 if uploaded_file is not None:
-    # 读取上传的zip文件
-    zip_data = BytesIO(uploaded_file.read())
+    # 将上传的文件内容读取到BytesIO对象中
+    zip_data = BytesIO(uploaded_file.getvalue())
+    
+    # 解压ZIP文件到临时目录
     with zipfile.ZipFile(zip_data, 'r') as zip_ref:
         zip_ref.extractall('extracted_files')
     
-    # 现在可以在extracted_files目录下找到所有上传的文件
+    # 遍历解压出来的文件并处理
     for root, dirs, files in os.walk('extracted_files'):
+    
+    # # 现在可以在extracted_files目录下找到所有上传的文件
+    # for root, dirs, files in os.walk('extracted_files'):
 
-    # for root,dirs,files in os.walk(path):
+    # # for root,dirs,files in os.walk(path):
          for file in files:
              if file.endswith('_RawData.xlsx'):
                  # os.path,join(路径 ，文件名称)组合路径
