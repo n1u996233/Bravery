@@ -119,8 +119,8 @@ if process_button:
         sigma_chamberT, vpp_chamberT = calculate_sigma_vpp(chamberT, 'chamberT')
         sigma_EnvirT, vpp_EnvirT = calculate_sigma_vpp(EnvirT, 'EnvirT')
 
-        st.write('sigma_aves')
-        st.write('vpp_aves')
+        st.write(sigma_aves)
+        st.write(vpp_aves)
         
         # sigma_Z, vpp_Z = calculate_sigma_vpp(Z, 'Z')
         # 绘制图表并添加 sigma 和 Vpp 文本
