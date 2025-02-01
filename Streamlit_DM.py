@@ -25,7 +25,7 @@ def std(nums):
 #streamlit界面设置
 st.title("DM处理")
 
-path = st.text_input("请输入文件路径(省略引号)", "")
+path = st.text_input("请输入文件路径(省略引号)", )
 process_button = st.button('开始处理')
 
 if process_button:
